@@ -1,0 +1,22 @@
+{
+  "activity": "explorer",
+  "chatSessions": [
+    {
+      "id": "f4954b7a-0501-4cf0-aa20-16b407e4e4ee",
+      "tab": "atlas",
+      "title": "이 oranewbie.github.io 로 repo를 구성하면 일반 홈페이지 처럼 쓸 수 있는 건가?",
+      "ts": 1794382176336
+    }
+  ],
+  "chatSize": 1048,
+  "chatTabSession": {
+    "atlas": "f4954b7a-0501-4cf0-aa20-16b407e4e4ee"
+  },
+  "updatedAt": "2026-11-11T07:30:59.076Z",
+  "user": {
+    "email": "3087134+oranewbie@users.noreply.github.com",
+    "name": "jai jun,Lee",
+    "role": "dev"
+  },
+  "version": 1
+}

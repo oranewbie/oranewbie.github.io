@@ -1,0 +1,42 @@
+# >>> atlas 공유 정책 — 이 블록은 atlas 가 갱신한다(직접 고치지 말 것) >>>
+# .atlas = 에이전트와 사람이 한 팀으로 일한 결과를 공유하는 공간.
+#   shared  팀 전체가 본다(추적)   ·   private  에이전트 + 이 장비의 사람만(비추적)
+# 분류의 진실은 packages/atlas-runtime/src/workspace/atlas-scopes.ts 의 ATLAS_LAYOUT 이다.
+# 이 블록 바깥에 쓴 줄은 보존된다 — 프로젝트 고유 규칙은 아래/위에 적을 것.
+
+# ── Studio 소유 ──
+# 나와 내 에이전트만 — 에이전트 런타임 데이터·개인 기억층·UI 상태·진행 중 실행 상태
+private/
+# 워크벤치 export 산출물 — 빌드 결과물이라 공유하지 않는다(배포는 팩으로)
+export/
+# 이관 전의 구 자리 — 옛 체크아웃·미이관 프로젝트가 이것들을 다시 올리지 않게 남긴다
+/application_context.json
+/ui/
+/runs/
+/.intake-staging/
+/chat-debug.log
+agent/chats/
+agent/llm-call-tracker/
+agent/usage/
+agent/users/
+agent/scratch/
+agent/triggers/
+agent/memory-local/
+agent/memory/MEMORY.md
+memory/MEMORY.md
+
+# ── 워크벤치 홈 — 선언은 공유, 이력·파생물은 제외 ──
+# 사용자 활동·activity 실행 이력 — 이 장비의 기록
+workbenches/*/history/
+# 툴 실행 이력 — 같은 이유로 비공개
+workbenches/*/tools/history.jsonl
+# 코드 툴의 설치된 외부 패키지 — package.json(+lock)이 진실이고 이쪽은 파생물
+workbenches/*/tools/code/**/node_modules/
+workbenches/*/tools/code/**/.applied.json
+workbenches/*/tools/code/**/.installing
+
+# ── atlas-engine 그래프 — 소스는 공유, 머신 파생물만 제외 ──
+# 그래프 소스는 공유하되 이 머신 전용 파생물 둘은 제외
+graphs/.runtimes-applied.json
+graphs/**/__pycache__/
+# <<< atlas 공유 정책 <<<
