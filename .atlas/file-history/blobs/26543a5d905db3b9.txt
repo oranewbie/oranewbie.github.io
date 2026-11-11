@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATLAS — AI Business Platform</title>
+<meta name="description" content="ATLAS는 AI 서비스를 만드는 기업을 위한 통합 AI Engineering Platform입니다. Build Once. Reuse Everywhere.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0b1220;
+  --navy-2:#111a2e;
+  --ink:#1c2433;
+  --body:#3c475c;
+  --muted:#6b7689;
+  --line:#e3e8f0;
+  --bg:#ffffff;
+  --bg-soft:#f5f7fb;
+  --accent:#2563eb;
+  --accent-2:#60a5fa;
+  --gold:#f5b942;
+  --max:1080px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;color:var(--body);background:var(--bg);line-height:1.75;font-size:16px}
+.mono{font-family:'JetBrains Mono',monospace}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+h2{font-size:clamp(26px,3.6vw,36px);font-weight:900;color:var(--ink);line-height:1.35;letter-spacing:-.01em}
+h3{font-size:19px;font-weight:700;color:var(--ink)}
+.kicker{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.lead{font-size:17.5px;color:var(--body);max-width:760px;margin-top:16px}
+.sec-head{margin-bottom:44px}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,18,32,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:17px;color:#fff;text-decoration:none;letter-spacing:.12em}
+.brand span{color:var(--accent-2)}
+.nav-links{display:flex;gap:26px}
+.nav-links a{color:#b9c3d6;text-decoration:none;font-size:13.5px;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:#fff}
+.nav-links a.nav-dl{color:#fff;background:var(--accent);padding:7px 16px;border-radius:999px;font-weight:700}
+.nav-links a.nav-dl:hover{background:var(--accent-2)}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:15px;padding:13px 26px;border-radius:12px;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-2)}
+.btn-ghost{border:1px solid rgba(255,255,255,.35);color:#e8edf6}
+.btn-ghost:hover{border-color:#fff;color:#fff}
+@media(max-width:720px){.nav-links{display:none}}
+
+/* hero */
+.hero{background:radial-gradient(1100px 600px at 75% -10%,#1d3a6e 0%,var(--navy) 55%);color:#fff;padding:168px 0 120px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.hero .kicker{color:var(--accent-2)}
+.hero h1{font-size:clamp(38px,6vw,64px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin-bottom:22px}
+.hero h1 em{font-style:normal;color:var(--accent-2)}
+.hero p.sub{font-size:clamp(16px,2.2vw,19px);color:#c4cede;max-width:640px;margin-bottom:34px}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:44px}
+.tag{font-family:'JetBrains Mono',monospace;font-size:12px;padding:7px 14px;border:1px solid rgba(255,255,255,.22);border-radius:999px;color:#dbe3f0}
+.motto{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(15px,2.4vw,20px);letter-spacing:.14em;color:var(--gold)}
+
+/* alt backgrounds */
+.soft{background:var(--bg-soft)}
+.dark{background:var(--navy);color:#c4cede}
+.dark h2,.dark h3{color:#fff}
+.dark .kicker{color:var(--accent-2)}
+
+/* cards & grids */
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 24px;transition:transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(16,34,70,.09)}
+.card h3{margin-bottom:8px}
+.card p{font-size:14.5px;color:var(--muted)}
+.card .num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.14em;display:block;margin-bottom:10px}
+.dark .card{background:var(--navy-2);border-color:rgba(255,255,255,.1)}
+.dark .card p{color:#9aa7bd}
+
+/* callout */
+.callout{margin-top:40px;border-left:4px solid var(--accent);background:var(--bg-soft);border-radius:0 12px 12px 0;padding:22px 26px;font-size:16.5px;font-weight:500;color:var(--ink)}
+.callout strong{color:var(--accent)}
+.dark .callout{background:rgba(255,255,255,.05);color:#e8edf6}
+.dark .callout strong{color:var(--accent-2)}
+
+/* question list */
+.qlist{counter-reset:q;display:grid;gap:12px;max-width:720px}
+.qlist li{list-style:none;counter-increment:q;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 20px 16px 58px;position:relative;font-weight:500;color:var(--ink)}
+.qlist li::before{content:counter(q,decimal-leading-zero);position:absolute;left:20px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--accent)}
+
+/* split compare */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:720px){.compare{grid-template-columns:1fr}}
+.panel{border-radius:14px;padding:28px}
+.panel ul{list-style:none;display:grid;gap:9px;margin-top:14px}
+.panel li{font-size:14.5px;padding-left:22px;position:relative}
+.panel li::before{content:"—";position:absolute;left:0;opacity:.5}
+.panel.bad{background:#fdf3f2;border:1px solid #f3d9d6}
+.panel.bad h3{color:#b4423a}
+.panel.good{background:#eef6f0;border:1px solid #d4e8da}
+.panel.good h3{color:#2e7d4f}
+
+/* flow steps */
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+@media(max-width:720px){.flow{grid-template-columns:1fr}}
+.step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
+.step .phase{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:8px}
+.step h3{font-size:16.5px;margin-bottom:6px}
+.step p{font-size:14px;color:var(--muted)}
+.dark .step{background:var(--navy-2);border-color:rgba(255,255,255,.1)}
+.dark .step p{color:#9aa7bd}
+
+/* table */
+.tbl{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line);font-size:14.5px}
+.tbl th{background:var(--navy);color:#fff;text-align:left;padding:14px 18px;font-weight:700;font-size:13.5px}
+.tbl td{padding:14px 18px;border-top:1px solid var(--line);vertical-align:top}
+.tbl td:first-child{font-weight:700;color:var(--ink);white-space:nowrap}
+.tbl-scroll{overflow-x:auto;border-radius:14px}
+.tbl .now{background:#f0f6ff;font-weight:500}
+
+/* stat bar */
+.ratio{margin:30px 0 10px;max-width:720px}
+.ratio .bar{display:flex;height:48px;border-radius:12px;overflow:hidden;font-size:13.5px;font-weight:700;color:#fff}
+.ratio .biz{background:var(--accent);flex:3;display:flex;align-items:center;justify-content:center}
+.ratio .plat{background:#94a3b8;flex:7;display:flex;align-items:center;justify-content:center}
+.ratio .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+
+/* chain */
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:26px}
+.chain .node{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;font-size:14px;font-weight:500;color:var(--ink)}
+.chain .arrow{color:var(--muted);font-weight:700}
+.dark .chain .node{background:var(--navy-2);border-color:rgba(255,255,255,.14);color:#e8edf6}
+
+/* products */
+.prod{border-top:4px solid var(--accent)}
+.prod .mono-name{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;color:var(--ink);display:block;margin-bottom:4px}
+.prod .role{font-size:12.5px;font-weight:700;color:var(--accent);letter-spacing:.04em;display:block;margin-bottom:10px}
+
+/* closing */
+.closing{background:radial-gradient(900px 500px at 50% 120%,#1d3a6e 0%,var(--navy) 60%);color:#fff;text-align:center;padding:120px 0}
+.closing h2{color:#fff;font-size:clamp(26px,4.5vw,42px);margin-bottom:18px}
+.closing h2 em{font-style:normal;color:var(--accent-2)}
+.closing p{color:#c4cede;max-width:620px;margin:0 auto 34px;font-size:17px}
+.closing .motto{display:block;margin-top:8px}
+
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.08);color:#7e8aa0;font-size:13px;padding:28px 0;text-align:center}
+footer a{color:#aab6cc;text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">ATLAS<span>_</span></a>
+    <div class="nav-links">
+      <a href="#problem">왜 필요한가</a>
+      <a href="#studio">ATLAS STUDIO</a>
+      <a href="#platform">플랫폼</a>
+      <a href="#workbench">워크벤치</a>
+      <a href="#business">사업 가치</a>
+      <a href="https://github.com/oranewbie/atlas-dist" target="_blank" rel="noopener" class="nav-dl">다운로드</a>
+    </div>
+  </div>
+</nav>
+
+<!-- 1. 표지 -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="kicker">AI Business Platform</span>
+    <h1>The Platform<br>Behind <em>AI Business</em></h1>
+    <p class="sub">ATLAS는 AI 서비스를 만드는 기업을 위한 통합 AI Engineering Platform입니다. 반복되는 AI 공통 기반을 한 번 만들어 재사용하고, 프로젝트는 고객의 일하는 방식에 AI를 정착시키는 데 집중합니다.</p>
+    <div class="tags">
+      <span class="tag">Multi-LLM</span>
+      <span class="tag">Context Engineering</span>
+      <span class="tag">Agent Workflow</span>
+      <span class="tag">AI-DLC</span>
+      <span class="tag">Enterprise Integration</span>
+    </div>
+    <div class="motto">BUILD ONCE. REUSE EVERYWHERE.</div>
+    <div class="btns">
+      <a class="btn btn-primary" href="https://github.com/oranewbie/atlas-dist" target="_blank" rel="noopener">⬇ 제품 다운로드 · 설치</a>
+      <a class="btn btn-ghost" href="#problem">자세히 보기</a>
+    </div>
+  </div>
+</header>
+
+<!-- 2. 시장 변화 -->
+<section id="problem">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">01 — Market Shift</span>
+      <h2>AI 도입은 선택이 아닌 필수입니다</h2>
+      <p class="lead">AI 모델은 빠르게 발전하고 있지만, 기업은 여전히 서비스 구현의 복잡성과 씨름합니다. 기업의 과제는 모델 선택을 넘어, AI 서비스를 구축하고 운영하는 방법으로 이동하고 있습니다.</p>
+    </div>
+    <ul class="qlist">
+      <li>어떤 LLM을 선택해야 할까?</li>
+      <li>Context(회사 지식)는 어떻게 구축할까?</li>
+      <li>Agent는 무엇을 사용해야 할까?</li>
+      <li>기존 시스템과 어떻게 연결할까?</li>
+      <li>기술 변화에 어떻게 대응할까?</li>
+    </ul>
+    <div class="callout">핵심 과제는 AI 모델이 아니라 <strong>AI 서비스 구축·운영 역량</strong>입니다.</div>
+  </div>
+</section>
+
+<!-- 3·4. 프로젝트 현실 / 숨겨진 비용 -->
+<section class="soft">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">02 — Project Reality</span>
+      <h2>AI 프로젝트는 매번 플랫폼부터 다시 시작됩니다</h2>
+      <p class="lead">프로젝트마다 공통 기반을 반복 개발하면서 비즈니스 구현에 투입할 시간이 줄어듭니다. 고객은 비즈니스를 원하지만, 개발팀은 플랫폼부터 다시 만들고 있습니다.</p>
+    </div>
+    <div class="compare">
+      <div class="panel bad">
+        <h3>프로젝트마다 반복되는 플랫폼 작업</h3>
+        <ul>
+          <li>LLM 연동 · Prompt 관리</li>
+          <li>Context 구축 · Agent Runtime</li>
+          <li>MCP 연계 · 외부 시스템 연동</li>
+          <li>사용자 · 권한 관리</li>
+          <li>관리자 · 운영 기능</li>
+        </ul>
+      </div>
+      <div class="panel good">
+        <h3>고객이 실제로 원하는 결과</h3>
+        <ul>
+          <li>업무 자동화</li>
+          <li>지식 검색</li>
+          <li>생산성 향상</li>
+          <li>의사결정 지원</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ratio">
+      <div class="bar">
+        <div class="biz">비즈니스 구현 30%</div>
+        <div class="plat">플랫폼 구축 70%</div>
+      </div>
+      <p class="note">※ 30:70은 문제를 설명하기 위한 예시 비중이며, 실제 프로젝트별 투입 비율은 달라질 수 있습니다.</p>
+    </div>
+    <div class="callout">반복 구축만이 비용이 아닙니다. 공통 기반에 대한 합의가 없으면 구현물이 제각각이 되어 품질이 흔들리고, 프로젝트가 실패합니다. AI가 전부 해결해 준다는 기대가 가장 위험합니다 — <strong>개발환경 · 공통 프레임워크 · 검증 도구가 먼저입니다.</strong></div>
+  </div>
+</section>
+
+<!-- 5. 실패의 이유 -->
+<section class="dark">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">03 — Why Projects Fail</span>
+      <h2>AI로 시작한 프로젝트, 왜 커질수록 무너질까</h2>
+      <p class="lead" style="color:#9aa7bd">시스템 개발에 AI를 쓰는 것은 시대의 흐름이지만, 실제 프로젝트는 많이 실패합니다.</p>
+    </div>
+    <div class="flow">
+      <div class="step">
+        <span class="phase">초기</span>
+        <h3>잘 되는 것 같다</h3>
+        <p>AI가 빠르게 화면과 코드를 만들어 냅니다.</p>
+      </div>
+      <div class="step">
+        <span class="phase">확장</span>
+        <h3>관리가 안 된다</h3>
+        <p>시스템이 커질수록 구현물이 제각각이 되고 일관성이 무너집니다.</p>
+      </div>
+      <div class="step">
+        <span class="phase">결국</span>
+        <h3>아무도 이해하지 못한다</h3>
+        <p>프로젝트 인원이 AI가 만든 것을 이해하고 고치기 어려워집니다.</p>
+      </div>
+    </div>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card"><span class="num">방법론</span><p>누가 무엇을, 어떤 순서로 하는지 정합니다.</p></div>
+      <div class="card"><span class="num">도구</span><p>검증하고 관리하는 수단을 갖춥니다.</p></div>
+      <div class="card"><span class="num">프레임워크</span><p>모두가 같은 구조 위에서 만듭니다.</p></div>
+    </div>
+    <div class="callout">필요한 것은 더 강한 AI가 아니라, <strong>AI와 사람이 함께 일하는 체계</strong>입니다.</div>
+  </div>
+</section>
+
+<!-- 6. ATLAS STUDIO -->
+<section id="studio">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">04 — ATLAS STUDIO</span>
+      <h2>AI와 사람이 함께 일하는 개발환경</h2>
+      <p class="lead">한마디로 VS Code 같은 AI 개발 도구 — AI와 사람이 하나의 프로젝트를 함께 수행하는 공간입니다. 사람은 판단 · 승인 · 책임을, AI는 제안 · 구현 · 검증을 맡고, 둘은 같은 방법론 · 같은 데이터 · 같은 도구 위에서 일합니다.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card">
+        <span class="num">무엇을 해야 하는가</span>
+        <h3>명확한 가이드</h3>
+        <p>AI와 사람 각자의 역할과 순서를 방법론으로 정해 둡니다.<br><b>방법론 · Activity</b></p>
+      </div>
+      <div class="card">
+        <span class="num">무엇을 하고 있는가</span>
+        <h3>보이는 진행</h3>
+        <p>누가 어디까지 했는지 드러나고, 사람이 확인하고 승인합니다.<br><b>Workbench · Human Gate</b></p>
+      </div>
+      <div class="card">
+        <span class="num">어떻게 하는가</span>
+        <h3>데이터와 도구</h3>
+        <p>회사 지식과 업무 도구를 AI와 사람이 함께 씁니다.<br><b>Context · Tooling</b></p>
+      </div>
+    </div>
+    <div class="callout">프로젝트 구현을 체계화하고, <strong>관리 가능한 형태로 조직</strong>합니다.</div>
+  </div>
+</section>
+
+<!-- 7·9. 세 가지 기반 + 개방형 구조 -->
+<section class="soft">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">05 — Three Foundations</span>
+      <h2>세 가지 기반, 기술 변화에 종속되지 않는 개방형 구조</h2>
+      <p class="lead">AI 활용 기술이 발전하는 세 영역을 모두 담고, 프로젝트 상황에 맞게 골라 적용합니다. 검증된 새 기술은 부품처럼 바꿔 끼워 바로 쓰고, 새로운 방식은 워크벤치에서 실험하고 비교합니다.</p>
+    </div>
+    <div class="tbl-scroll">
+      <table class="tbl">
+        <thead>
+          <tr><th></th><th>AGENT WORKFLOW</th><th>CONTEXT ENGINEERING</th><th>AI-DLC</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>질문</td><td>AI가 어떻게 일하는가</td><td>AI가 무엇을 아는가</td><td>AI와 어떻게 개발하는가</td></tr>
+          <tr><td>1단계</td><td>단일 질의응답</td><td>프롬프트에 직접 입력</td><td>코드 자동완성</td></tr>
+          <tr><td>2단계</td><td>도구를 쓰는 Agent · Harness</td><td>RAG · 벡터 검색</td><td>대화형 AI 코딩</td></tr>
+          <tr class="now"><td>지금</td><td>Loop · Graph · Multi-Agent</td><td>Wiki · Data Lake · 관련성 게이팅</td><td>스펙 승인 → 자율 구현 · 검증</td></tr>
+          <tr><td>ATLAS</td><td>실행 흐름을 선언으로 재구성</td><td>저장·검색 방식을 부품처럼 교체</td><td>개발 방법 자체를 워크벤치로 교체</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chain">
+      <span class="node"><b>Any LLM</b> — OpenAI · Claude · Gemini · Azure OpenAI · Local LLM</span>
+      <span class="node"><b>Any Tool</b> — MCP · REST API · Database · Legacy System</span>
+    </div>
+    <div class="callout">한 번 만든 기반을 모든 프로젝트에서 재사용합니다 — <strong>Build Once. Reuse Everywhere.</strong></div>
+  </div>
+</section>
+
+<!-- 8. 플랫폼 구성 -->
+<section id="platform">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">06 — One Platform</span>
+      <h2>하나의 플랫폼, 네 가지 핵심 구성</h2>
+      <p class="lead">설계·개발부터 UI, Agent 실행, 워크플로우 실행까지 AI 프로젝트의 핵심 단계를 연결합니다.</p>
+    </div>
+    <div class="grid g4">
+      <div class="card prod">
+        <span class="mono-name">ATLAS STUDIO</span>
+        <span class="role">AI · 사람 공동 개발환경</span>
+        <p>방법론 · 가이드 · 도구 · 프로젝트 체계화 · 관리</p>
+      </div>
+      <div class="card prod">
+        <span class="mono-name">ATLAS REACT</span>
+        <span class="role">Enterprise UI Layer</span>
+        <p>기업용 사용자 경험 · 서비스 UI 구성</p>
+      </div>
+      <div class="card prod">
+        <span class="mono-name">ATLAS AGENT</span>
+        <span class="role">AI Agent Core</span>
+        <p>Multi-LLM 연동 · 도구(MCP) 실행 · 권한 승인</p>
+      </div>
+      <div class="card prod">
+        <span class="mono-name">ATLAS ENGINE</span>
+        <span class="role">Workflow Runtime</span>
+        <p>그래프 워크플로우 실행 · 중단·재개 · 확장</p>
+      </div>
+    </div>
+    <div class="chain">
+      <span class="node">설계·개발 — Studio</span><span class="arrow">→</span>
+      <span class="node">화면 — React</span><span class="arrow">→</span>
+      <span class="node">실행 — Agent · Engine 서버</span><span class="arrow">→</span>
+      <span class="node">기존 시스템(Java · Spring Boot)에 바로 연결</span>
+    </div>
+  </div>
+</section>
+
+<!-- 10. 워크벤치 -->
+<section class="dark" id="workbench">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">07 — Workbench</span>
+      <h2>ATLAS는 챗봇이 아닙니다</h2>
+      <p class="lead" style="color:#9aa7bd">ATLAS는 사람과 AI가 함께 일하는 업무 공간, 워크벤치(Workbench)를 만드는 플랫폼입니다. 워크벤치는 업무 하나를 위한 AI 협업 공간입니다.</p>
+    </div>
+    <div class="grid g4">
+      <div class="card"><span class="num">ACTIVITY</span><h3>AI가 수행하는 작업 단위</h3><p>실행 · 평가 · 개선</p></div>
+      <div class="card"><span class="num">TOOLING</span><h3>AI가 쓰는 도구</h3><p>업무 시스템 · 화면 · MCP</p></div>
+      <div class="card"><span class="num">CONTEXT</span><h3>AI가 아는 회사 지식</h3><p>문서 · 규칙 · 데이터</p></div>
+      <div class="card"><span class="num">HUMAN GATE</span><h3>사람이 확인하고 결정</h3><p>AI 제안 → 사람 승인</p></div>
+    </div>
+    <div class="chain">
+      <span class="node">실행</span><span class="arrow">→</span>
+      <span class="node">평가</span><span class="arrow">→</span>
+      <span class="node">사람 보강</span><span class="arrow">→</span>
+      <span class="node">개선</span><span class="arrow">↻</span>
+      <span style="font-size:14px;color:#9aa7bd">LOOP — 반복할수록 업무에 맞게 다듬어집니다</span>
+    </div>
+    <div class="grid g3" style="margin-top:36px">
+      <div class="card"><h3>Enterprise Assistant</h3><p>업무 지원</p></div>
+      <div class="card"><h3>AI Copilot</h3><p>직무 맞춤 보조</p></div>
+      <div class="card"><h3>Document AI</h3><p>문서 이해 · 추출</p></div>
+      <div class="card"><h3>Knowledge Portal</h3><p>지식 검색 · 활용</p></div>
+      <div class="card"><h3>Multi-Agent System</h3><p>여러 AI의 협업</p></div>
+      <div class="card"><h3>업무 자동화 서비스</h3><p>흐름 · 시스템 연결</p></div>
+    </div>
+    <div class="callout">챗봇은 대답하고, <strong>워크벤치는 일합니다.</strong></div>
+  </div>
+</section>
+
+<!-- 11. SI 사업 가치 -->
+<section id="business">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">08 — Business Value</span>
+      <h2>기능이 아니라, 일하는 방식을 납품합니다</h2>
+      <p class="lead">목표는 AI 기능 하나를 납품하는 것이 아니라, 고객의 일하는 방식에 AI를 정착시키는 것입니다.</p>
+    </div>
+    <div class="compare">
+      <div class="panel bad">
+        <h3>BEFORE — 기능 납품형</h3>
+        <ul>
+          <li>프로젝트 수주 → 플랫폼 구축 → AI 기능 개발 → 오픈 · 종료</li>
+          <li>끝나면 남는 것은 기능 하나</li>
+        </ul>
+      </div>
+      <div class="panel good">
+        <h3>AFTER — AI-DLC로 수행, 일하는 방식을 납품</h3>
+        <ul>
+          <li><b>1. 컨텍스트 구축</b> — 업무 지식·규칙·데이터를 모은다</li>
+          <li><b>2. Inception</b> — AI가 요건·설계를 제안, 사람이 승인</li>
+          <li><b>3. Construction</b> — 워크벤치를 구성하고 AI가 구현·검증 반복</li>
+          <li><b>4. Operations</b> — 운영하며 평가하고 사람의 보강으로 개선</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid g4" style="margin-top:18px">
+      <div class="card"><h3>일하는 방식 납품</h3><p>기능이 아닌 체계가 남습니다.</p></div>
+      <div class="card"><h3>재사용 자산 축적</h3><p>검증된 컨텍스트·워크벤치를 시드 팩으로 회수해 다음 프로젝트에서 재사용합니다.</p></div>
+      <div class="card"><h3>운영할수록 개선</h3><p>평가와 사람의 보강으로 계속 다듬어집니다.</p></div>
+      <div class="card"><h3>구축 기간 단축</h3><p>공통 기반 재사용으로 빠르게 시작합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12·13. 미래 대응 + 사업 기회 -->
+<section class="soft">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">09 — Future-Proof</span>
+      <h2>오늘의 기술이 아니라, 변화에 대응하는 구조</h2>
+      <p class="lead">모델과 프레임워크가 바뀌어도 플랫폼의 기반과 고객 서비스 자산을 지속적으로 활용합니다.</p>
+    </div>
+    <div class="chain" style="margin-bottom:44px">
+      <span class="node"><b>TODAY</b> — GPT · Claude · Gemini</span><span class="arrow">→</span>
+      <span class="node"><b>TOMORROW</b> — 로컬 · 산업 특화 모델</span><span class="arrow">→</span>
+      <span class="node"><b>NEXT</b> — 새로운 AI 기술</span>
+    </div>
+    <h3 style="margin-bottom:18px">하나의 플랫폼으로 확장하는 사업 영역</h3>
+    <div class="grid g3">
+      <div class="card">
+        <span class="num">ENTERPRISE AI</span>
+        <p>AI Assistant · Knowledge Search · Copilot</p>
+      </div>
+      <div class="card">
+        <span class="num">PROCESS AUTOMATION</span>
+        <p>Workflow Agent · Multi-Agent Service</p>
+      </div>
+      <div class="card">
+        <span class="num">INDUSTRY SOLUTION</span>
+        <p>제조 · 금융 · 공공 · 교육 · IT 서비스</p>
+      </div>
+    </div>
+    <div class="callout">공통 기반은 재사용하고, <strong>고객별 차별화 영역에 집중</strong>합니다.</div>
+  </div>
+</section>
+
+<!-- 14. 맺음 -->
+<section class="closing">
+  <div class="wrap">
+    <span class="kicker" style="color:var(--accent-2)">Why ATLAS</span>
+    <h2>기업은 AI 모델을 구매하지 않습니다.<br>기업은 <em>비즈니스 결과</em>를 구매합니다.</h2>
+    <p>ATLAS는 AI 사업을 가능하게 하는 플랫폼입니다.</p>
+    <div class="btns" style="justify-content:center">
+      <a class="btn btn-primary" href="https://github.com/oranewbie/atlas-dist" target="_blank" rel="noopener">⬇ 제품 다운로드 · 설치</a>
+    </div>
+    <span class="motto mono" style="display:block;margin-top:34px">BUILD ONCE. REUSE EVERYWHERE. SCALE WITHOUT LIMITS.</span>
+    <p style="margin-top:40px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.2em;color:#7e8aa0">ATLAS — AI BUSINESS PLATFORM FOR THE NEXT DECADE</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 ATLAS · AI Business Platform</div>
+</footer>
+
+</body>
+</html>

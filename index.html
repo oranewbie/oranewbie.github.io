@@ -43,6 +43,15 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .nav-links{display:flex;gap:26px}
 .nav-links a{color:#b9c3d6;text-decoration:none;font-size:13.5px;font-weight:500;transition:color .15s}
 .nav-links a:hover{color:#fff}
+.nav-links a.nav-dl{color:#fff;background:var(--accent);padding:7px 16px;border-radius:999px;font-weight:700}
+.nav-links a.nav-dl:hover{background:var(--accent-2)}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:15px;padding:13px 26px;border-radius:12px;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-2)}
+.btn-ghost{border:1px solid rgba(255,255,255,.35);color:#e8edf6}
+.btn-ghost:hover{border-color:#fff;color:#fff}
 @media(max-width:720px){.nav-links{display:none}}
 
 /* hero */
@@ -159,6 +168,7 @@ footer a{color:#aab6cc;text-decoration:none}
       <a href="#platform">플랫폼</a>
       <a href="#workbench">워크벤치</a>
       <a href="#business">사업 가치</a>
+      <a href="https://github.com/oranewbie/atlas-dist" target="_blank" rel="noopener" class="nav-dl">다운로드</a>
     </div>
   </div>
 </nav>
@@ -177,6 +187,10 @@ footer a{color:#aab6cc;text-decoration:none}
       <span class="tag">Enterprise Integration</span>
     </div>
     <div class="motto">BUILD ONCE. REUSE EVERYWHERE.</div>
+    <div class="btns">
+      <a class="btn btn-primary" href="https://github.com/oranewbie/atlas-dist" target="_blank" rel="noopener">⬇ 제품 다운로드 · 설치</a>
+      <a class="btn btn-ghost" href="#problem">자세히 보기</a>
+    </div>
   </div>
 </header>
 
@@ -477,13 +491,16 @@ footer a{color:#aab6cc;text-decoration:none}
     <span class="kicker" style="color:var(--accent-2)">Why ATLAS</span>
     <h2>기업은 AI 모델을 구매하지 않습니다.<br>기업은 <em>비즈니스 결과</em>를 구매합니다.</h2>
     <p>ATLAS는 AI 사업을 가능하게 하는 플랫폼입니다.</p>
-    <span class="motto mono">BUILD ONCE. REUSE EVERYWHERE. SCALE WITHOUT LIMITS.</span>
+    <div class="btns" style="justify-content:center">
+      <a class="btn btn-primary" href="https://github.com/oranewbie/atlas-dist" target="_blank" rel="noopener">⬇ 제품 다운로드 · 설치</a>
+    </div>
+    <span class="motto mono" style="display:block;margin-top:34px">BUILD ONCE. REUSE EVERYWHERE. SCALE WITHOUT LIMITS.</span>
     <p style="margin-top:40px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.2em;color:#7e8aa0">ATLAS — AI BUSINESS PLATFORM FOR THE NEXT DECADE</p>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">© 2026 ATLAS · AI Business Platform</div>
+  <div class="wrap">© 2026 ATLAS · AI Business Platform · <a href="https://github.com/oranewbie/atlas-dist" target="_blank" rel="noopener">다운로드 · 설치 (atlas-dist)</a></div>
 </footer>
 
 </body>
